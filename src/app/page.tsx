@@ -8,9 +8,16 @@ import { useAppKitProvider } from "@reown/appkit/react";
 import { type Provider } from "@reown/appkit-adapter-solana/react";
 import { stake } from "@/services/streamflow";
 import { Stake } from "@/components/Stake";
+import { useFetchStakePools } from "@/hooks/useFetchStakePools";
+import { useEffect } from "react";
 
 export default function Home() {
   const { walletProvider } = useAppKitProvider<Provider>("solana");
+  const { stakepools, fetchStakePools, loading, error } = useFetchStakePools();
+
+  useEffect(() => {
+    console.log(stakepools, "yoooo");
+  });
 
   const createStakeParams = {
     nonce: 3,

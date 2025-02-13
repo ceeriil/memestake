@@ -2,6 +2,7 @@ import {
   IInteractSolanaExt,
   SolanaStakingClient,
   StakeArgs,
+  StakePool,
 } from "@streamflow/staking";
 import { ICluster, ITransactionResult } from "@streamflow/stream";
 
@@ -38,5 +39,39 @@ export const stake = async (
     return stake;
   } catch (error) {
     onError(error);
+  }
+};
+
+/**
+ * Get stake pool
+ *
+ * @async
+ * @param {string} address
+ * @returns {Promise<[string, Stream][] | undefined>}
+ */
+export const getStake = async (
+  address: string
+): Promise<StakePool | undefined> => {
+  try {
+    const stake = await solanaClient.getStakePool(address);
+    return stake;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * Get stake pool
+ *
+ * @async
+ * @param {string} address
+ * @returns {Promise<[string, Stream][] | undefined>}
+ */
+export const getAllStakePools = async (): Promise<StakePool | undefined> => {
+  try {
+    const stake = await solanaClient.searchStakePools();
+    return stake;
+  } catch (error) {
+    console.error(error);
   }
 };
