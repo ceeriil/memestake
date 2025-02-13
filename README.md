@@ -1,16 +1,56 @@
-# Reown AppKit Example using Solana (next.js with App Router)
+# **MemeCoin Staking App Demo**
 
-This is a Next.js project.
+This repository serves as a demo for using **Streamflow** to create a staking app for your meme token.
 
-## Usage
+## **Getting Started**
 
-1. Go to [Reown Cloud](https://cloud.reown.com) and create a new project.
-2. Copy your `Project ID`
-3. Rename `.env.example` to `.env` and paste your `Project ID` as the value for `NEXT_PUBLIC_PROJECT_ID`
-4. Run `pnpm install` to install dependencies
-5. Run `pnpm run dev` to start the development server
+### **Prerequisites**
 
-## Resources
+- Node.js (LTS recommended)
+- Yarn or npm (package manager)
+- Reown Project ID (or Solana Wallet Adapter)
+- RPC URL (Devnet or Mainnet)
 
-- [Reown — Docs](https://docs.reown.com)
-- [Next.js — Docs](https://nextjs.org/docs)
+### **Environment Variables**
+
+Create a `.env.local` file in the root directory and add:
+
+```
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SOLANA_RPC_URL=your_rpc_url
+```
+
+## **Configuration**
+
+### **Moving to Mainnet**
+
+Modify the following code in **`src/app/services/streamflow.ts`**:
+
+```ts
+const solanaClient = new SolanaStakingClient({
+  clusterUrl: `your rpc url`,
+  cluster: ICluster.Mainnet,
+});
+```
+
+## **Running the App**
+
+To install dependencies, run:
+
+```
+npm install
+# or
+yarn install
+```
+
+To start the development server:
+
+```
+npm run dev
+# or
+yarn dev
+```
+
+## **Contributing**
+
+This project is open for contributions! Feel free to submit PRs or open issues.
