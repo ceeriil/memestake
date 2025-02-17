@@ -1,32 +1,51 @@
 import React from "react";
-import { Card } from "../Card";
+import { StakeForm } from "./StakeForm";
+import { StakePoolInfo } from "./StakePoolInfo";
+import BN from "bn.js";
+import { Keypair } from "@solana/web3.js";
+import { useAppKitProvider } from "@reown/appkit/react";
+import { type Provider } from "@reown/appkit-adapter-solana/react";
+import { stake } from "@/services/streamflow";
+import { useEffect } from "react";
+import { useFetchStakePool } from "@/hooks/useFetchStakePool";
 
-export const Stake = ({ handleStake }: { handleStake: () => void }) => {
+export const StakePanel = () => {
+  const { walletProvider } = useAppKitProvider<Provider>("solana");
+  const { stakepool } = useFetchStakePool(
+    "2H29y5auDTCKox8vxZP2h5acrDai385KLpjiNKEtRqUj"
+  );
+
+  useEffect(() => {
+    console.log(stakepool, "yoooo");
+  });
+
+  const createStakeParams = {
+    nonce: 28,
+    amount: new BN(1000000),
+    duration: new BN(86400 * 33),
+    stakePool: "2H29y5auDTCKox8vxZP2h5acrDai385KLpjiNKEtRqUj",
+    stakePoolMint: "So11111111111111111111111111111111111111112",
+  };
+
+  const handleStake = async () => {
+    await stake(
+      createStakeParams,
+      {
+        invoker: walletProvider as unknown as Keypair,
+      },
+      (stake) => {
+        console.log("successful", stake);
+      },
+      (error) => {
+        console.log("error", error);
+      }
+    );
+  };
+
   return (
-    <Card title={"Stake token"}>
-      <div className="flex flex-col w-full items-center">
-        <p className="py-2 pt-6">
-          Stake token to this pool to earn daily rewards.
-        </p>
-        <div className="w-full">
-          <input
-            type="number"
-            className="w-full py-3 border-2 rounded-lg px-4 bg-transparent border-[#000]"
-            value={20}
-          />
-        </div>
-        <div className=" w-full mx-auto py-8">
-          <span className="font-[500]">Width</span>
-
-          <input type="range" width={100} className="w-full"></input>
-        </div>
-        <button
-          className="py-3 px-5 bg-[#73BDA8] active rounded-xl text-black w-full font-semi-bold text-lg"
-          onClick={handleStake}
-        >
-          Stake
-        </button>
-      </div>
-    </Card>
+    <section className="container mx-auto py-6 grid md:grid-cols-[60%,40%] gap-10 mt-16 px-4">
+      <StakePoolInfo />
+      <StakeForm handleStake={handleStake} />
+    </section>
   );
 };
