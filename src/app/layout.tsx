@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-import './globals.css';
-import ContextProvider from '@/context'
+import "./globals.css";
+import ContextProvider from "@/context";
 
 export const metadata: Metadata = {
-  title: "AppKit in Next.js + Solana",
-  description: "AppKit example dApp",
+  title: "Solana Meme Staking dApp",
+  description: "Solana Meme Staking dApp",
 };
 
 export default async function RootLayout({

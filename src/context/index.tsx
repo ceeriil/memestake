@@ -1,20 +1,20 @@
-'use client'
+"use client";
 
-import { solanaWeb3JsAdapter, projectId, networks } from '@/config'
-import { createAppKit } from '@reown/appkit/react'
-import React, { type ReactNode } from 'react'
+import { solanaWeb3JsAdapter, projectId, networks } from "@/config";
+import { createAppKit } from "@reown/appkit/react";
+import React, { type ReactNode } from "react";
 
 if (!projectId) {
-  throw new Error('Project ID is not defined')
+  throw new Error("Project ID is not defined");
 }
 
 // Set up metadata
 const metadata = {
-  name: 'next-reown-appkit',
-  description: 'next-reown-appkit',
-  url: 'https://github.com/0xonerb/next-reown-appkit-ssr', // origin must match your domain & subdomain
-  icons: ['https://avatars.githubusercontent.com/u/179229932']
-}
+  name: "Solana Meme Staking dApp",
+  description: "Solana Meme Staking dApp",
+  url: "https://github.com/0xonerb/next-reown-appkit-ssr",
+  icons: [""],
+};
 
 // Create the modal
 export const modal = createAppKit({
@@ -22,16 +22,18 @@ export const modal = createAppKit({
   projectId,
   networks,
   metadata,
-  themeMode: 'light',
+  themeMode: "light",
   features: {
-    analytics: true // Optional - defaults to your Cloud configuration
-  }
-})
+    analytics: true,
+  },
+  themeVariables: {
+    "--w3m-font-family": "Space Grotesk",
+    "--w3m-accent": "#73BDA8",
+  },
+});
 
 function ContextProvider({ children }: { children: ReactNode }) {
-  return (
-    <>{children}</>
-  )
+  return <>{children}</>;
 }
 
-export default ContextProvider
+export default ContextProvider;

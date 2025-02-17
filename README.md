@@ -51,6 +51,23 @@ npm run dev
 yarn dev
 ```
 
+## **Styling**
+
+This project uses **Tailwind CSS** for styling.
+
+- The colors and presets can be modified in the **`tailwind.config.js`** file.
+- For advanced styling and to match your meme token's UI, you should be familiar with **Tailwind CSS** or regular CSS.
+
+📚 Learn more about Tailwind: [https://tailwindcss.com/docs](https://tailwindcss.com/docs)
+
+## **Future Updates**
+
+Future updates will include:
+
+- **Sui/Aptos demo**
+- **Option to top up rewards**
+- **Stake pool creation**
+
 ## **Contributing**
 
 This project is open for contributions! Feel free to submit PRs or open issues.
