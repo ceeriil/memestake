@@ -16,15 +16,15 @@ export const StakePoolInfo = () => {
         />
         <div>
           <h2 className=" text-xl font-semibold">USDC-dev</h2>
-          <p className=""> (0x3..454)</p>
+          <p> (0x3..454)</p>
         </div>
       </div>
       <div className="w-full grid-cols-2 grid border-t mt-12 py-3">
-        <div className="">
+        <div>
           <p>Total Value Locked</p>
           <p className="mt-2 text-3xl font-bold">9,800</p>
         </div>
-        <div className="">
+        <div>
           <p>Stakers</p>
           <div className="flex space-x-2 items-center mt-2 ">
             <div>

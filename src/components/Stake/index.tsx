@@ -8,6 +8,7 @@ import { type Provider } from "@reown/appkit-adapter-solana/react";
 import { stake } from "@/services/streamflow";
 import { useEffect } from "react";
 import { useFetchStakePool } from "@/hooks/useFetchStakePool";
+import { StakeList } from "./StakeList";
 
 export const StakePanel = () => {
   const { walletProvider } = useAppKitProvider<Provider>("solana");
@@ -43,9 +44,14 @@ export const StakePanel = () => {
   };
 
   return (
-    <section className="container mx-auto py-6 grid md:grid-cols-[60%,40%] gap-10 mt-16 px-4">
-      <StakePoolInfo />
-      <StakeForm handleStake={handleStake} />
-    </section>
+    <div>
+      <section className="container mx-auto py-6 grid md:grid-cols-[60%,40%] gap-10 mt-16 px-4">
+        <StakePoolInfo />
+        <StakeForm handleStake={handleStake} />
+      </section>
+      <section>
+        <StakeList />
+      </section>
+    </div>
   );
 };

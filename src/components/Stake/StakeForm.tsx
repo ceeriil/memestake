@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "../Card";
+import DurationSlider from "./DurationSlider";
 
 export const StakeForm = ({ handleStake }: { handleStake: () => void }) => {
   return (
@@ -15,11 +16,7 @@ export const StakeForm = ({ handleStake }: { handleStake: () => void }) => {
             value={20}
           />
         </div>
-        <div className=" w-full mx-auto py-8">
-          <span className="font-[500]">Width</span>
-
-          <input type="range" width={100} className="w-full"></input>
-        </div>
+        <DurationSlider minDays={1} maxDays={795} />
         <button
           className="py-3 px-5 bg-[#73BDA8] active rounded-xl text-black w-full font-semi-bold text-lg"
           onClick={handleStake}
