@@ -10,11 +10,17 @@ import { useEffect } from "react";
 import { useFetchStakePool } from "@/hooks/useFetchStakePool";
 import { StakeList } from "./StakeList";
 
-export const StakePanel = () => {
+interface StakePanelProps {
+  stakePool: string;
+  stakePoolMint: string;
+}
+
+export const StakePanel: React.FC<StakePanelProps> = ({
+  stakePool,
+  stakePoolMint,
+}) => {
   const { walletProvider } = useAppKitProvider<Provider>("solana");
-  const { stakepool } = useFetchStakePool(
-    "2H29y5auDTCKox8vxZP2h5acrDai385KLpjiNKEtRqUj"
-  );
+  const { stakepool } = useFetchStakePool(stakePool);
 
   useEffect(() => {
     console.log(stakepool, "yoooo");
@@ -34,8 +40,8 @@ export const StakePanel = () => {
       nonce: 504,
       amount: new BN(totalAmountInLamports),
       duration: new BN(durationInSeconds),
-      stakePool: "2H29y5auDTCKox8vxZP2h5acrDai385KLpjiNKEtRqUj",
-      stakePoolMint: "So11111111111111111111111111111111111111112",
+      stakePool,
+      stakePoolMint,
     };
 
     await stake(
@@ -48,9 +54,9 @@ export const StakePanel = () => {
 
   return (
     <div>
-      <section className="container mx-auto py-6 grid md:grid-cols-[60%,40%] gap-10 mt-16 px-4">
-        <StakePoolInfo />
+      <section className="container mx-auto py-6 grid md:grid-cols-[40%,60%] gap-10 mt-16 px-4">
         <StakeForm handleStake={handleStake} />
+        <StakePoolInfo />
       </section>
       <section>
         <StakeList />

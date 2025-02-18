@@ -1,6 +1,7 @@
 "use client";
 import { ConnectButton } from "@/components/ConnectButton";
 import { StakePanel } from "@/components/Stake";
+import { STAKE_POOL_DETAILS } from "@/config/stakePools";
 
 export default function Home() {
   return (
@@ -11,7 +12,10 @@ export default function Home() {
           <ConnectButton />
         </div>
       </header>
-      <StakePanel />
+      <StakePanel
+        stakePool={STAKE_POOL_DETAILS.stakePool}
+        stakePoolMint={STAKE_POOL_DETAILS.stakePoolMint}
+      />
     </div>
   );
 }

@@ -1,0 +1,4 @@
+export const STAKE_POOL_DETAILS = {
+  stakePool: "2H29y5auDTCKox8vxZP2h5acrDai385KLpjiNKEtRqUj",
+  stakePoolMint: "So11111111111111111111111111111111111111112",
+};
