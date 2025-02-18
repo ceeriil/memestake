@@ -3,8 +3,10 @@ import {
   SolanaStakingClient,
   StakeArgs,
   StakePool,
+  StakeEntry,
 } from "@streamflow/staking";
 import { ICluster, ITransactionResult } from "@streamflow/stream";
+import { PublicKey } from "@solana/web3.js";
 
 /**
  * create a new instance of the SolanaStakingClient
@@ -70,6 +72,28 @@ export const getStake = async (
 export const getAllStakePools = async (): Promise<StakePool | undefined> => {
   try {
     const stake = await solanaClient.searchStakePools();
+    return stake;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * Get stake entries
+ *
+ * @async
+ * @param {string} address
+ * @returns {Promise<[string, Stream][] | undefined>}
+ */
+export const getAllStakeEntries = async (
+  address: PublicKey,
+  stakePool: PublicKey
+): Promise<[StakeEntry] | undefined> => {
+  try {
+    const stake = await solanaClient.searchStakeEntries({
+      payer: address,
+      stakePool,
+    });
     return stake;
   } catch (error) {
     console.error(error);

@@ -20,26 +20,29 @@ export const StakePanel = () => {
     console.log(stakepool, "yoooo");
   });
 
-  const createStakeParams = {
-    nonce: 28,
-    amount: new BN(1000000),
-    duration: new BN(86400 * 33),
-    stakePool: "2H29y5auDTCKox8vxZP2h5acrDai385KLpjiNKEtRqUj",
-    stakePoolMint: "So11111111111111111111111111111111111111112",
-  };
+  const handleStake = async (formData: FormData) => {
+    const amount = Number(formData.get("amount"));
+    const durationInSeconds = Number(formData.get("duration"));
+    const decimals = 9;
 
-  const handleStake = async () => {
+    console.log(amount, durationInSeconds);
+
+    const totalAmountInLamports = new BN(Math.round(amount * 10 ** decimals));
+    console.log(totalAmountInLamports, durationInSeconds);
+
+    const createStakeParams = {
+      nonce: 504,
+      amount: new BN(totalAmountInLamports),
+      duration: new BN(durationInSeconds),
+      stakePool: "2H29y5auDTCKox8vxZP2h5acrDai385KLpjiNKEtRqUj",
+      stakePoolMint: "So11111111111111111111111111111111111111112",
+    };
+
     await stake(
       createStakeParams,
-      {
-        invoker: walletProvider as unknown as Keypair,
-      },
-      (stake) => {
-        console.log("successful", stake);
-      },
-      (error) => {
-        console.log("error", error);
-      }
+      { invoker: walletProvider as unknown as Keypair },
+      (stake) => console.log("successful", stake),
+      (error) => console.log("error", error)
     );
   };
 

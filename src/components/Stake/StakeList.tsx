@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card } from "../Card";
+import { useFetchStakeEntries } from "@/hooks/useFetchStakeEntries";
+import { PublicKey } from "@solana/web3.js";
 
 export const StakeList = () => {
+  const stakePoolPK = new PublicKey(
+    "2H29y5auDTCKox8vxZP2h5acrDai385KLpjiNKEtRqUj"
+  );
+  const { stakeEntries } = useFetchStakeEntries(stakePoolPK);
+
+  useEffect(() => {
+    console.log("sk", stakeEntries);
+  }, [stakeEntries]);
+
   return (
     <div className="mt-16 mb-16">
       <div className="container mx-auto px-4">
